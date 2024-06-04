@@ -1,17 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { getAllCars, deleteCar } from '../carService';
 
-const CarList = () => {
-    const [cars, setCars] = useState([]);
-
+const CarList = ({ cars }) => {
     useEffect(() => {
         fetchCars();
-    }, []);
+    }, [cars]);
+
+    console.log(cars)
 
     const fetchCars = async () => {
         try {
             const response = await getAllCars();
-            setCars(response.data);
+            cars(response.data);
         } catch (error) {
             console.error('Error fetching cars:', error);
         }
@@ -20,7 +20,7 @@ const CarList = () => {
     const handleDelete = async (id) => {
         try {
             await deleteCar(id);
-            fetchCars();
+            fetchCars(); // Fetch the updated list of cars after deletion
         } catch (error) {
             console.error('Error deleting car:', error);
         }
@@ -42,5 +42,3 @@ const CarList = () => {
 };
 
 export default CarList;
-
-

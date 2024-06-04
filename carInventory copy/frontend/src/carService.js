@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:5000/api/cars';
+const API_URL = 'http://localhost:3000/api/cars';
 
 export const addCar = (car) => axios.post(API_URL, car);
 export const getAllCars = () => axios.get(API_URL);

@@ -35,16 +35,19 @@ const UpdateCar = () => {
         setSelectedCar(car);
         setCarDetails(car);
     };
+    
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await updateCar(selectedCar._id, carDetails);
+            await updateCar(selectedCar._id, carDetails); 
             fetchCars();
-        } catch (error) {
+            window.location.reload();
+       } catch (error) {
             console.error('Error updating car:', error);
         }
     };
+    
 
     return (
         <div>
