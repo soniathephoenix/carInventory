@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { addCar } from '../carService';
 
-const AddCar = () => {
+const AddCar = ({ fetchCars }) => {
     const [car, setCar] = useState({
         make: '',
         model: '',
@@ -17,14 +17,19 @@ const AddCar = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        await addCar(car);
-        setCar({
-            make: '',
-            model: '',
-            registrationNumber: '',
-            currentOwner: '',
-            year: ''
-        });
+        try {
+            await addCar(car);
+            setCar({
+                make: '',
+                model: '',
+                registrationNumber: '',
+                currentOwner: '',
+                year: ''
+            });
+            await fetchCars();
+        } catch (error) {
+            console.error('Error adding car:', error);
+        }
     };
 
     return (
@@ -41,4 +46,3 @@ const AddCar = () => {
 };
 
 export default AddCar;
-

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getAllCars, updateCar } from './carService'; // Update the path if needed
+import { getAllCars, updateCar } from './carService';
 import CarList from './components/CarList';
 import AddCar from './components/AddCar';
 import UpdateCar from './components/UpdateCar';
